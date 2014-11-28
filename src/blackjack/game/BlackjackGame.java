@@ -21,13 +21,9 @@ public class BlackjackGame {
         boolean primera = true;
         boolean bancarrota[];
 // Presentacion
-        Locale loc = new Locale("es","ES");
+        Locale loc = new Locale("ca","ES");
         ResourceBundle resb1 = ResourceBundle.getBundle("bundle",loc);
         JOptionPane.showMessageDialog(null, resb1.getString("BIENVENIDO AL JUEGO DE BLACKJACK."));
-
-
-
-       // JOptionPane.showMessageDialog(null, resb1.getString("                AUTOR:  EDARK"));
 
 
 // Preguntamos por número de jugadores y por la cantidad con la que
@@ -150,18 +146,18 @@ public class BlackjackGame {
                 JOptionPane.showMessageDialog(null,resb1.getString("LA BANCA TIENE ")
                         + manoBanca.obtenerCarta(0)
                         + java.text.MessageFormat.format(resb1.getString(" Y {0}."), new Object[] {manoBanca.obtenerCarta(1)}));
-                JOptionPane.showMessageDialog(null, java.text.MessageFormat.format(java.util.ResourceBundle.getBundle("blackjack/game/bundle_es_ES").getString("EL JUGADOR {0}{1} TIENE "), new Object[] {i, 1})
+                JOptionPane.showMessageDialog(null, java.text.MessageFormat.format(resb1.getString("EL JUGADOR {0}{1} TIENE "), new Object[] {i, 1})
                         + manoJugador[i].obtenerCarta(0)
-                        + java.text.MessageFormat.format(java.util.ResourceBundle.getBundle("blackjack/game/bundle_es_ES").getString(" Y {0}."), new Object[] {manoJugador[i].obtenerCarta(1)}));
-                JOptionPane.showMessageDialog(null, java.text.MessageFormat.format(java.util.ResourceBundle.getBundle("blackjack/game/bundle_es_ES").getString("EL JUGADOR {0}{1} TIENE BLACKJACK Y GANA"), new Object[] {i, 1}));
+                        + java.text.MessageFormat.format(resb1.getString(" Y {0}."), new Object[] {manoJugador[i].obtenerCarta(1)}));
+                JOptionPane.showMessageDialog(null, java.text.MessageFormat.format(resb1.getString("EL JUGADOR {0}{1} TIENE BLACKJACK Y GANA"), new Object[] {i, 1}));
                 resultados[i + 1] = 2;
                 fin = true;
             }
         }
 // Si la banca tiene BJ gana y se acaba la partida
         if (manoBanca.getBlackjackValor() == 21) {
-            JOptionPane.showMessageDialog(null, java.text.MessageFormat.format(java.util.ResourceBundle.getBundle("blackjack/game/bundle_es_ES").getString("LA BANCA TIENE {0}"), new Object[] {manoBanca.obtenerCarta(0)})                    + java.text.MessageFormat.format(java.util.ResourceBundle.getBundle("blackjack/game/bundle_es_ES").getString(" Y {0}."), new Object[] {manoBanca.obtenerCarta(1)}));
-            JOptionPane.showMessageDialog(null, java.util.ResourceBundle.getBundle("blackjack/game/bundle_es_ES").getString("LA BANCA TIENE BLACKJACK Y GANA."));
+            JOptionPane.showMessageDialog(null, java.text.MessageFormat.format(resb1.getString("LA BANCA TIENE {0}"), new Object[] {manoBanca.obtenerCarta(0)})                    + java.text.MessageFormat.format(java.util.ResourceBundle.getBundle("blackjack/game/bundle_es_ES").getString(" Y {0}."), new Object[] {manoBanca.obtenerCarta(1)}));
+            JOptionPane.showMessageDialog(null, resb1.getString("LA BANCA TIENE BLACKJACK Y GANA."));
             resultados[0] = 2;
             fin = true;
         }
@@ -189,15 +185,15 @@ public class BlackjackGame {
 
                 int accion;
                 do {
-                    accion = Integer.parseInt(JOptionPane.showInputDialog(java.util.ResourceBundle.getBundle("blackjack/game/bundle_es_ES").getString("CARTA (1) O SE PLANTA (2)? ")));
+                    accion = Integer.parseInt(JOptionPane.showInputDialog(resb1.getString("CARTA (1) O SE PLANTA (2)? ")));
                     if (accion != 1 && accion != 2) {
-                        accion = Integer.parseInt(JOptionPane.showInputDialog(java.util.ResourceBundle.getBundle("blackjack/game/bundle_es_ES").getString("POR FAVOR RESPONDA C O P: ")));
+                        accion = Integer.parseInt(JOptionPane.showInputDialog(resb1.getString("POR FAVOR RESPONDA C O P: ")));
                     }
                 } while (accion != 1 && accion != 2);
 // Si se planta salimos del bucle
                 if (accion == 2) {
 
-                    JOptionPane.showMessageDialog(null, java.text.MessageFormat.format(java.util.ResourceBundle.getBundle("blackjack/game/bundle_es_ES").getString("EL JUGADOR {0}{1} SE PLANTA."), new Object[] {j, 1}));
+                    JOptionPane.showMessageDialog(null, java.text.MessageFormat.format(resb1.getString("EL JUGADOR {0}{1} SE PLANTA."), new Object[] {"",j+1}));
 
                     break;
                 } // Si no se planta seguimos con una nueva carta
@@ -205,13 +201,13 @@ public class BlackjackGame {
                     Carta newCarta = baraja.robar();
                     manoJugador[j].cogerCarta(newCarta);
 
-                    JOptionPane.showMessageDialog(null, java.util.ResourceBundle.getBundle("blackjack/game/bundle_es_ES").getString("USTED ROBA CARTA."));
-                    JOptionPane.showMessageDialog(null, java.text.MessageFormat.format(java.util.ResourceBundle.getBundle("blackjack/game/bundle_es_ES").getString("SU CARTA ES {0}"), new Object[] {newCarta}));
-                    JOptionPane.showMessageDialog(null, java.util.ResourceBundle.getBundle("blackjack/game/bundle_es_ES").getString("Y USTED TIENE ")
-                            + manoJugador[j].getBlackjackValor() + java.util.ResourceBundle.getBundle("blackjack/game/bundle_es_ES").getString(" PUNTOS"));
+                    JOptionPane.showMessageDialog(null, resb1.getString("USTED ROBA CARTA."));
+                    JOptionPane.showMessageDialog(null, java.text.MessageFormat.format(resb1.getString("SU CARTA ES {0}"), new Object[] {newCarta}));
+                    JOptionPane.showMessageDialog(null, resb1.getString("Y USTED TIENE ")
+                            + manoJugador[j].getBlackjackValor() + resb1.getString(" PUNTOS"));
 // Si se pasa de 21 puntos pierde y pone su resultado a -1
                     if (manoJugador[j].getBlackjackValor() > 21) {
-                        JOptionPane.showMessageDialog(null, java.text.MessageFormat.format(java.util.ResourceBundle.getBundle("blackjack/game/bundle_es_ES").getString("EL JUGADOR {0}{1} SE HA PASADO DE 21. HA PERDIDO"), new Object[] {j, 1}));
+                        JOptionPane.showMessageDialog(null, java.text.MessageFormat.format(resb1.getString("EL JUGADOR {0}{1} SE HA PASADO DE 21. HA PERDIDO"), new Object[] {"", j+1}));
 
                         resultados[j + 1] = -1;
                         fin = true;
@@ -223,9 +219,9 @@ public class BlackjackGame {
             }
         }
 // Ahora le toca jugar a la banca
-        JOptionPane.showMessageDialog(null, java.util.ResourceBundle.getBundle("blackjack/game/bundle_es_ES").getString("LAS CARTAS DE LA BANCA SON "));
-        JOptionPane.showMessageDialog(null, java.text.MessageFormat.format(java.util.ResourceBundle.getBundle("blackjack/game/bundle_es_ES").getString(" {0}"), new Object[] {manoBanca.obtenerCarta(0)}));
-        JOptionPane.showMessageDialog(null, java.text.MessageFormat.format(java.util.ResourceBundle.getBundle("blackjack/game/bundle_es_ES").getString(" {0}"), new Object[] {manoBanca.obtenerCarta(1)}));
+        JOptionPane.showMessageDialog(null, resb1.getString("LAS CARTAS DE LA BANCA SON "));
+        JOptionPane.showMessageDialog(null, java.text.MessageFormat.format(resb1.getString(" {0}"), new Object[] {manoBanca.obtenerCarta(0)}));
+        JOptionPane.showMessageDialog(null, java.text.MessageFormat.format(resb1.getString(" {0}"), new Object[] {manoBanca.obtenerCarta(1)}));
         while (true) {
             float beneficio = 0;
             float beneficio_hip = 0;
@@ -263,7 +259,7 @@ public class BlackjackGame {
 // Si el beneficio hipotetico es mayor que el actual robamos carta
             if (beneficio_hip > beneficio) {
                 Carta newCarta = baraja.robar();
-                JOptionPane.showMessageDialog(null, java.text.MessageFormat.format(java.util.ResourceBundle.getBundle("blackjack/game/bundle_es_ES").getString("LA BANCA ROBA {0}"), new Object[] {newCarta}));
+                JOptionPane.showMessageDialog(null, java.text.MessageFormat.format(resb1.getString("LA BANCA ROBA {0}"), new Object[] {newCarta}));
                 manoBanca.cogerCarta(newCarta);
                 if (manoBanca.getBlackjackValor() > 21) {
                     resultados[0] = -1;
@@ -275,8 +271,8 @@ public class BlackjackGame {
         }
 // Repetimos esto hasta que nos pasemos o decidamos no coger nueva
 //carta
-        JOptionPane.showMessageDialog(null, java.util.ResourceBundle.getBundle("blackjack/game/bundle_es_ES").getString("EL TOTAL DE LA BANCA ES DE ")
-                + manoBanca.getBlackjackValor() + java.util.ResourceBundle.getBundle("blackjack/game/bundle_es_ES").getString(" PUNTOS"));
+        JOptionPane.showMessageDialog(null,resb1.getString("EL TOTAL DE LA BANCA ES DE ")
+                + manoBanca.getBlackjackValor() + resb1.getString(" PUNTOS"));
 // Vamos a comparar los puntos de cada uno para ver quien ha ganado
 //a quien y lo reflejamos
 // en el array de resultados
@@ -299,9 +295,9 @@ public class BlackjackGame {
         for (i = 1; i <= jugadores; i++) {
             if (!bancarrota[i - 1]) {
                 if (resultados[i] > resultados[0]) {
-                    JOptionPane.showMessageDialog(null, java.text.MessageFormat.format(java.util.ResourceBundle.getBundle("blackjack/game/bundle_es_ES").getString("JUGADOR {0} GANA A LA BANCA."), new Object[] {i}));
+                    JOptionPane.showMessageDialog(null, java.text.MessageFormat.format(resb1.getString("JUGADOR {0} GANA A LA BANCA."), new Object[] {i}));
                 } else {
-                    JOptionPane.showMessageDialog(null, java.text.MessageFormat.format(java.util.ResourceBundle.getBundle("blackjack/game/bundle_es_ES").getString("LA BANCA GANA AL JUGADOR {0}."), new Object[] {i}));
+                    JOptionPane.showMessageDialog(null, java.text.MessageFormat.format(resb1.getString("LA BANCA GANA AL JUGADOR {0}."), new Object[] {i}));
                 }
             }
         }
