@@ -4,6 +4,8 @@
  */
 package blackjack.game;
 
+import java.util.ResourceBundle;
+
 /**
  *
  * @author Edark
@@ -26,6 +28,7 @@ Las definimos como privadas y a continuacion definimos los metodos para
 obtenerlas */
 private final int palo;
 private final int valor;
+private ResourceBundle resb1;
 /* Metodo constructor */
 public Carta(int val, int pal) {
 valor = val;
@@ -40,16 +43,17 @@ return valor;
 }
 public String getPaloString() {
 switch ( palo ) {
-case ESPADAS: return "Espadas";
-case CORAZONES: return "Corazones";
-case DIAMANTES: return "Diamantes";
-case PICAS: return "Picas";
+case ESPADAS: return resb1.getString("ESPADAS");
+case CORAZONES: return resb1.getString("CORAZONES");
+case DIAMANTES: return resb1.getString("DIAMANTES");
+case PICAS: return resb1.getString("PICAS");
 default: return "??";
 }
 }
 public String getValorString() {
+    
 switch ( valor ) {
-case 1: return "As";
+case 1: return resb1.getString("AS");
 case 2: return "2";
 case 3: return "3";
 case 4: return "4";
@@ -65,8 +69,13 @@ case 13: return "K";
 default: return "??";
 }
 }
+
+public void setTranslation(ResourceBundle resb1){
+    this.resb1 = resb1;
+}
 public String toString() {
-return getValorString() + " de " + getPaloString();
+  
+return getValorString() + java.text.MessageFormat.format(resb1.getString(" DE {0}"), new Object[] {getPaloString()});
 }
 }
 

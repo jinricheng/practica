@@ -4,6 +4,8 @@
  */
 package blackjack.game;
 
+import java.util.ResourceBundle;
+
 /**
  *
  * @author Edark
@@ -22,16 +24,20 @@ public int[] vistas;
 private int robadas;
 // Metodo constructor. Recorremos todos los valores posibles y todos los
 //palos posibles
-public Baraja() {
+ private ResourceBundle resb1;
+public Baraja(ResourceBundle resb1) {
 baraja = new Carta[52];
 vistas = new int[13];
+this.resb1 = resb1;
 int creadas = 0;
 for ( int palo = 0; palo <= 3; palo++ ) {
 for ( int valor = 1; valor <= 13; valor++ ) {
 baraja[creadas] = new Carta(valor,palo);
+baraja[creadas].setTranslation(resb1);
 creadas++;
 }
 }
+
 robadas = 0;
 }
 // Ordenamos la baraja en orden aleatorio

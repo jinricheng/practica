@@ -21,7 +21,7 @@ public class BlackjackGame {
         boolean primera = true;
         boolean bancarrota[];
 // Presentacion
-        Locale loc = new Locale("ca","ES");
+        Locale loc = new Locale("en","US");
         ResourceBundle resb1 = ResourceBundle.getBundle("bundle",loc);
         JOptionPane.showMessageDialog(null, resb1.getString("BIENVENIDO AL JUEGO DE BLACKJACK."));
 
@@ -127,7 +127,7 @@ public class BlackjackGame {
         for (int m = 0; m <= jugadores; m++) {
             resultados[m] = 0;
         }
-        baraja = new Baraja();
+        baraja = new Baraja(resb1);
 // Barajamos y repartimos
         baraja.barajar();
 // La banca roba sus cartas
