@@ -20,9 +20,26 @@ public class BlackjackGame {
         Mano manoJugador[];
         boolean primera = true;
         boolean bancarrota[];
+        Locale loc = null;
 // Presentacion
-        Locale loc = new Locale("en","US");
+        String option = JOptionPane.showInputDialog("Choose Language:Default(1)  English(2)  Catalan(3)  Spanish(4)  Exit(0)");
+        if(option.equalsIgnoreCase("1")){
+           loc =  Locale.getDefault();     
+        }
+        else if(option.equalsIgnoreCase("2")){
+           loc = new Locale("en","US");
+        }
+        else if(option.equalsIgnoreCase("3")){
+            loc = new Locale("ca","ES");
+        }
+        else if(option.equalsIgnoreCase("4")){
+            loc = new Locale("es","ES");
+        }
+        else{
+            System.exit(-1);
+        }
         ResourceBundle resb1 = ResourceBundle.getBundle("bundle",loc);
+        
         JOptionPane.showMessageDialog(null, resb1.getString("BIENVENIDO AL JUEGO DE BLACKJACK."));
 
 
